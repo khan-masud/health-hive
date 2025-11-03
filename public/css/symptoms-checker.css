@@ -1,0 +1,250 @@
+/* Basic Styles for Symptom Checker */
+.container {
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 120px;
+}
+
+.container-title {
+  /* background-color: #053e83; */
+  background: linear-gradient(to right, #ff0080, #ff8c00);
+  border-radius: 10px 10px 0px 0px;
+  padding: 15px;
+  text-align: center;
+  color: rgb(252, 252, 252);
+}
+
+.container-body {
+  padding: 20px;
+}
+
+.container-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+.container-input > div > input, select {
+  height: 35px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.container-input > div > input {
+  width: 45%;
+}
+
+.container-input > div > label {
+  margin-top: 16px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.search-box {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.symptoms-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.symptom-btn {
+  padding: 10px 20px;
+  background-color: #289da8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.symptom-btn.selected {
+  background-color: #136d76;
+}
+
+.selected-symptoms {
+  margin-bottom: 20px;
+}
+
+.selected-symptom-btn {
+  padding: 10px 20px;
+  background-color: #ab2222;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  float: left;
+}
+
+#check-symptoms-btn {
+  padding: 10px;
+  text-align: center;
+  /* background-color: #053e83; */
+  background: linear-gradient(to right, #ff0080, #ff8c00);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15.5px;
+  margin-top: 20px;
+  box-shadow: 10px 8px 32px 12px rgba(153, 153, 160, 0.37);
+}
+
+#check-symptoms-btn:hover {
+  background-color: #1976D2;
+}
+
+.analysis-icon {
+  font-size: 22px !important;
+  margin-top: -3px !important;
+}
+
+.medical-test-icon {
+  font-size: 22px !important;
+  margin-top: -3px;
+  color: #534caf;
+}
+
+.medical-test-link {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 7px 10px;
+  background-color: #10b30d;
+  font-size: 13.5px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.medical-test-link:hover {
+  background-color: #30822f;
+}
+
+.medical-test-names {
+  display: flex; 
+  flex-wrap: wrap;
+  gap: 3px;
+  padding-left: 10px;
+}
+
+#result {
+  margin-top: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+#prediction {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.disease-result {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+.disease-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.disease-name::before {
+  content: " ";
+  border-left: 7px solid red;
+  font-size: 26px;
+  margin-right: 10px;
+}
+
+.matching-percentage {
+  background-color: #df1616;
+  color: white;
+  font-size: 14.5px;
+  padding: 5px 10px;
+  border-radius: 12px;
+}
+
+.disease-details {
+  color: #647576;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin-bottom: -5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.disease-tests {
+  margin-top: 10px;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-rows: repeat(1, 2fr);
+  text-align: left;
+}
+
+.find-doctor-btn,
+.treatment-btn {
+  background-color: #053e83;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 7px;
+}
+
+.find-doctor-btn:hover,
+.treatment-btn:hover {
+  background-color: #1976D2;
+}
+
+.treatment-btn a {
+  color: white;
+  text-decoration: none;
+}
+
+
+@media (max-width: 768px) {
+
+  .medical-test-names {
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .container {
+    width: 95%;
+  }
+
+.find-doctor-btn,
+.treatment-btn, .medical-test-link {
+  font-size: 13px;
+  padding: 7px 12px;
+  margin-left: 4px;
+}
+}

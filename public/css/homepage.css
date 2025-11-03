@@ -1,0 +1,266 @@
+.hero-containter {
+    width: 100%;
+    height: 70vh;
+  }
+img.hero {
+    width: 100%;
+    height: auto;
+    margin-top: 60px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    grid-gap: 20px;
+    margin: 10px;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-div {
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 16px );
+    -webkit-backdrop-filter: blur( 16px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    height: 350px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* .isomorphic {
+    background: url('../img/ice.jpeg') no-repeat center center/cover;
+    border-radius: 20px;
+    margin-top: 20px;
+} */
+
+.feature-icon {
+    font-size: 120px!important;
+    color: rgb(7, 29, 119);
+}
+
+.feature-title {
+    font-size: 24px;
+    padding: 5px;
+    color: #085326;
+}
+
+.feature-details {
+    font-size: 17px;
+    margin-bottom: 20px;
+
+}
+
+a.feature-btn {
+    /* background: linear-gradient(90deg, #044b63, #04959f); */
+    background: linear-gradient(to right, #ff0080, #ff8c00);
+    color: rgb(252, 252, 252); 
+    text-decoration: none;
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 25px;
+    font-size: 18px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+a.feature-btn:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); 
+  }
+
+
+  .common-disease {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slider-container {
+    position: relative;
+    width: 95%; 
+    max-width: 1200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 330px;
+  }
+  
+  .slide {
+    flex: 0 0 80%; 
+    width: 100px;
+    margin: 0 2.5%; 
+    text-align: center;
+    font-size: 24px;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s, opacity 0.3s, scale 0.3s;
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  
+  .slide.active {
+    opacity: 1;
+    transform: scale(1);
+    border: 1px solid green;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  }
+
+  .slider-image {
+    width: 170px;
+    height: 170px;
+    margin-bottom: 10px;
+  }
+
+  .slider-text {
+    color: #085326;
+    text-align: center;
+  }
+
+  .slider-link {
+    text-decoration: none;
+    font-size: 14px;
+    background-color: #726408;
+    color: #fff;
+    padding: 12px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    display: none;
+    text-align: center;
+  }
+
+  .slide.active:hover .slider-link {
+    display: block;
+  }
+  
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    z-index: 10;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+  
+  .prev:hover, .next:hover  {
+    background-color: black;
+  }
+
+.tips-section {
+    padding: 20px;
+    text-align: center;
+}
+
+.tip-slider {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  width: 80%;
+  height: auto;
+}
+
+.tip-slide {
+  display: none;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  border: 2px dashed #045613;
+  border-radius: 8px;
+}
+
+.tip-slide.active {
+  display: flex;
+  animation: fade 0.5s ease-in-out;
+  font-size: 25px;
+  width: 80%;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fade {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+  
+
+@media (max-width: 768px) {
+.hero {
+      height: 40vh;
+    }
+
+  img.hero {
+    margin-top: 100px;
+  }
+
+  .features {
+      display: grid;
+      grid-template-columns: repeat(1, 2fr);
+      grid-gap: 20px;
+  }
+
+  .feature-title {
+    font-size: 26px;
+  }
+
+  .feature-div {
+    height: 380px;
+  }
+
+  .slide {
+    flex: 0 0 90%; 
+    margin: 0 5%;
+    opacity: 1; 
+    transform: scale(1); 
+    width: 60px;
+  }
+
+  .slider {
+    gap: 0;
+  }
+
+  .prev, .next {
+    display: block;
+  }
+
+  .prev {
+    left: 5px;
+  }
+
+  .next {
+    right: 5px; 
+  }
+
+  .tip-slide.active {
+    height: 300px;
+    font-size: 20px;
+  }
+
+}

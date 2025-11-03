@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Features Showcase</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla&display=swap');
+    body {
+      margin: 0;
+      font-family: 'Tiro Bangla';
+      background-color: #f8fdf8;
+      color: #333;
+      padding: 0 20px;
+    }
+    .header {
+      background-color: #28a745;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+    .header p {
+      margin: 5px 0 0;
+      font-size: 1.1rem;
+    }
+    .features-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .features-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .features-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid #dfe7df;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: scale(1.05);
+    }
+    .feature-card .icon {
+      font-size: 3rem;
+      color: #28a745;
+      margin-bottom: 10px;
+    }
+    .feature-card h3 {
+      font-size: 1.5rem;
+      color: #28a745;
+      margin: 10px 0;
+    }
+    .feature-card p {
+      font-size: 1rem;
+      color: #555;
+      margin: 10px 0;
+    }
+    .feature-card button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+    .feature-card button:hover {
+      background-color: #1e7b34;
+    }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .modal-content {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      position: relative;
+      margin: 5% auto;
+      max-width: 800px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .modal-content h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #28a745;
+    }
+    .modal-content p {
+      font-size: 1rem;
+      color: #555;
+      margin: 10px 0;
+    }
+    .modal-content .icon {
+      font-size: 4rem;
+      color: #28a745;
+      margin-bottom: 15px;
+    }
+    .modal-content button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+    .modal-content button:hover {
+      background-color: #1e7b34;
+    }
+    b {
+        color: red;
+    }
+    .modal-content a {
+      background-color: #28a745;
+      color: white;
+      border-radius: 5px;
+      padding: 11px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+      text-decoration: none;
+      text-align: center;
+    }
+    .modal-content a:hover {
+      background-color: #1e7b34;
+    }
+    #modal-link {
+        background-color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>ডকুমেন্টেশন - হেলথ হাইভ</h1>
+    <p>হেলথ হাইভের সকল ফিচার্স ও ব্যবহার সম্পর্কে বিস্তারিত তথ্য</p>
+  </div>
+  <div class="features-container">
+    <!-- Feature 1 -->
+    <div class="feature-card" onclick="showModal('feature1')">
+      <i class="fas fa-stethoscope icon"></i>
+      <h3>সিম্পটম চেকার</h3>
+      <p>লক্ষণ বা উপসর্গ থেকে জেনে নিন আপনার কোনো রোগ বা রোগের সম্ভাবনা আছে কিনা!</p>
+      <button>বিস্তারিত জানুন</button>
+    </div>
+    <!-- Feature 2 -->
+    <div class="feature-card" onclick="showModal('feature2')">
+      <i class="fas fa-heartbeat icon"></i>
+      <h3>হেলথ রিস্ক প্রেডিক্টর</h3>
+      <p>আপনার ডেইলি রুটিন ও খাদ্যভ্যাস থেকে জেনে নিন আপনার কি কি রোগের ঝুকি আছে!</p>
+      <button>বিস্তারিত জানুন</button>
+    </div>
+    <!-- Feature 3 -->
+    <div class="feature-card" onclick="showModal('feature3')">
+      <i class="fas fa-file-medical icon"></i>
+      <h3>মেডিকেল রিপোর্ট অ্যানালাইসিস</h3>
+      <p>মেডিকেল রিপোর্ট অ্যানালাইসিস করে জেনে নিন আপনার রোগের বর্তমান অবস্থা!</p>
+      <button>বিস্তারিত জানুন</button>
+    </div>
+    <!-- Feature 4 -->
+    <div class="feature-card" onclick="showModal('feature4')">
+      <i class="fas fa-prescription-bottle icon"></i>
+      <h3>প্রেস্ক্রিপশন অ্যানালাইসিস</h3>
+      <p>আপনার প্রেস্ক্রিপশন থেকে জেনে নিন আপনার ঔষধের বৃত্তান্ত!</p>
+      <button>বিস্তারিত জানুন</button>
+    </div>
+    <!-- Feature 5 -->
+    <div class="feature-card" onclick="showModal('feature5')">
+      <i class="fas fa-camera icon"></i>
+      <h3>ইমেজ টু ডিজিজ</h3>
+      <p>আপনার শরীরের বা ত্বকের যেকোনো অস্বাভাবিক ছবি থেকে জেনে নিন রোগের নাম!</p>
+      <button>বিস্তারিত জানুন</button>
+    </div>
+    <!-- Feature 6 -->
+    <div class="feature-card" onclick="showModal('feature6')">
+      <i class="fas fa-brain icon"></i>
+      <h3>বেটার মি</h3>
+      <p>ব্রেথিং এক্সারসাইজ করে আগের থেকে বেটার অনুভব করুন!</p>
+      <button>বিস্তারিত জানুন</button>
+    </div>
+    <!-- Feature 7 -->
+    <div class="feature-card" onclick="showModal('feature7')">
+      <i class="fas fa-calendar-day icon"></i>
+      <h3>উইমেন্স কর্নার</h3>
+      <p>আপনার ডেইলি এক্সারসাইজ, খাবার, ঘুম ইত্যাদি ট্র্যাক করুন!</p>
+      <button>বিস্তারিত জানুন</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+        <center>
+            <i id="modal-icon" class="fas icon"></i>
+            <h2 id="modal-title">Feature Title</h2>
+        </center>
+      <p id="modal-details">Feature Details</p>
+      <center>
+        <a id="modal-link" href="#" target="_blank">Learn More</a>
+        <button onclick="closeModal()">বন্ধ করুন</button>
+      </center>
+    </div>
+  </div>
+
+  <script>
+    function showModal(feature) {
+      const modal = document.getElementById('modal');
+      const title = document.getElementById('modal-title');
+      const details = document.getElementById('modal-details');
+      const icon = document.getElementById('modal-icon');
+      const link = document.getElementById('modal-link');
+      
+      modal.style.display = 'block';
+
+      switch (feature) {
+        case 'feature1':
+          title.innerText = 'সিম্পটম চেকার';
+          icon.className = 'fas fa-stethoscope icon';
+          details.innerHTML = `
+            <ul> 
+                <h3>কাজঃ </h3>
+                <p>এই ফিচারটি আপনাকে সিম্পটম বা উপসর্গের ভিত্তিতে সম্ভাব্য রোগের বিষয়ে জানতে সাহায্য করবে।</p>
+                <h3>যেভাবে ব্যবহার করতে হবেঃ </h3>
+                <p><ol>
+                    <li>প্রথমে আপনাকে বিভিন্ন রোগের লক্ষণ গুলো আপনার সামনে প্রদর্শন করানো হবে।</li>
+                    <li>কত কয়েকদিন যাবত আপনি যেসব লক্ষণ খেয়াল করছেন আপনার শরীরে সেসব খুজে বের করুন এবং সিলেক্ট করুন। অথবা আপনি সার্চ বক্সে লক্ষণ লিখে সার্চও করতে পারেন।</li>
+                    <li>আপনার সম্ভাব্য সকল লক্ষণ সিলেক্ট করা হয়ে গেলে <b>'অ্যানালাইসিস করুন'</b> বাটনে ক্লিক করুন।</li>
+                    <li>এরপর আপনাকে আপনার সিলেক্ট করা লক্ষণের সাথে মিলে যায় এরকম কিছু রোগের নাম দেখানো হবে এবং সেই রোগের লক্ষণের সাথে কত পার্সেন্টেজ মিলে যায় সেটাও দেখানো হবে।</li>
+                    <li>রোগটি আপনার মধ্যে আছে কিনা সেটা যাচাই করার জন্য সম্ভাব্য যেসব মেডিকেল টেস্ট করতে হবে সেগুলো সেখানে শো হবে।</li>
+                    <li>আপনি বিভিন্ন মেডিকেল টেস্টের উপর ক্লিক করলে সেই মেডিকেল টেস্ট সম্পর্কে বেসিক কিছু আইডিয়া যেমনঃ টেস্টটি কেন করাতে হয়, কিভাবে করা হয়, আনুমানিক খরচ কত এসব বিষয়ে জানতে পারবেন।</li>
+                    <li>তারপর আপনার লোকেশোন অনুযায়ী ওই রোগের বিশেষজ্ঞ ডাক্তার কোথায় পাবেন সেটা জানতে <b>'বিশেষজ্ঞ ডাক্তার খুজুন' </b> অপশনে যান।</li>
+                    <li>রোগটির প্রাথমিক চিকিৎসা সহ আরও বিস্তারিত তথ্য পেতে <b>'প্রাথমিক চিকিৎসা'</b> নামক অপশনে ক্লিক করুন।</li>
+                   </ol>
+                </p>
+            </ul>
+          `;
+          link.href = 'https://healthhive.shadharon.net/symptoms-checker.html';
+          link.innerText = 'ভিজিট করুন';
+          break;
+        case 'feature2':
+          title.innerText = 'হেলথ রিস্ক প্রেডিক্টর';
+          icon.className = 'fas fa-heartbeat icon';
+          details.innerHTML = `
+            <ul> 
+                <h3>কাজঃ </h3>
+                <p>এই ফিচারটি আপনার দৈনন্দিন জীবন, ব্যক্তিগত জীবন, খাদ্যাভাস, জীবন যাপনের ধরণ বিশ্লেষণ করে আপনার ভবিষ্যত স্বাস্থ্য ঝুকি প্রেডিক্ট করে।</p>
+                <h3>যেভাবে ব্যবহার করতে হবেঃ </h3>
+                <p><ol>
+                    <li> আপনাকে আপনার দৈনন্দিন জীবন, খাদ্যাভাস, মানসিক স্বাস্থ্য সহ বিভিন্ন বিষয়ে কিছু বেসিক প্রশ্ন করা হবে। আপনি এক এক করে সকল প্রশ্নের উত্তর দিবেন।</li>
+                    <li>সকল প্রশ্নের উত্তর দেওয়া শেষ হলে <b>অ্যানালাইসিস করুন</b> বাটনে ক্লিক করুন। </li>
+                    <li>এরপর আপনাকে কিছুক্ষন অপেক্ষা করতে হবে। <b>এই সময়ের মধ্যে আপনার ডাটা গুলো এআই এর মাধ্যমে বিশ্লেষণ করানো হবে এবং সেই অনুযায়ী একটি রিপোর্ট প্রদান করা হবে।</b></li>
+                    <li>রিপোর্টে আপনি আপনার বর্তমান সাধারণ সমস্যা সমূহ, ভবিষ্যতে কি কি রোগ হওয়ার সম্ভাবনা রয়েছে, এসব থেকে বাচতে আপনার জীবন যাত্রায় কি কি পরিবর্তন আনা দরকার সেসব জানতে পারবেন।</li>
+                   </ol>
+                </p>
+            </ul>
+          `;
+          link.href = 'https://healthhive.shadharon.net/health-risk-predictor.html';
+          link.innerText = 'ভিজিট করুন';
+          break;
+        case 'feature3':
+          title.innerText = 'মেডিকেল রিপোর্ট অ্যানালাইসিস';
+          icon.className = 'fas fa-file-medical icon';
+          details.innerHTML = `
+             <ul> 
+                <h3>কাজঃ </h3>
+                <p>এই ফিচারটি আপনার যেকোনো ধরণের মেডিকেল রিপোর্ট অ্যানালাইসিস করে আপনাকে একটি বিস্তারিত ওয়ারভিউ দিতে পারবে।</p>
+                <h3>যেভাবে ব্যবহার করতে হবেঃ </h3>
+                <p><ol>
+                    <li>প্রথমে আপনাকে একটি মেডিকেল রিপোর্ট দিতে হবে। অবশ্যই সেটা একটি মেডিকেল রিপোর্টের ইমেজ হতে হবে।</li>
+                    <li>আপনি চাইলে সরাসরি ক্যামেরা ওপেন করে রিপোর্টের ইমেজ ইনপুট দিতে পারবেন অথবা আপনার রিপোর্টের ছবি তোলা থাকলে সেটা সিলেক্ট করে ইনপুট দিতে পারবেন।</li>
+                    <li>ইমেজ দেওয়ার পর আপনাকে <b>অ্যানালাইসিস করুন</b> বাটনে ক্লিক করতে হবে।</li>
+                    <li>এরপর আপনাকে কিছুক্ষন অপেক্ষা করতে হবে। <b>এই সময়ের মধ্যে আপনার ইমেজটি গুলো এআই এর মাধ্যমে বিশ্লেষণ করানো হবে এবং সেই অনুযায়ী একটি রিপোর্ট বা ওভারভিউ প্রদান করা হবে।</b></li>
+                    <li>রিপোর্টে আপনি আপনার মেডিকেল রিপোর্ট অনুযায়ী বিভিন্ন ডাটা, সম্ভাব্য রোগ ও ঝুকি, আপনার পরবর্তী পদক্ষেপ সম্পর্কে জানতে পারবেন। </li>
+                   </ol>
+                </p>
+            </ul>
+          `;
+          link.href = 'https://healthhive.shadharon.net/medical-report-analysis.html';
+          link.innerText = 'ভিজিট করুন';
+          break;
+        case 'feature4':
+          title.innerText = 'প্রেস্ক্রিপশন অ্যানালাইসিস';
+          icon.className = 'fas fa-prescription-bottle icon';
+          details.innerHTML = `
+            <ul> 
+                <h3>কাজঃ </h3>
+                <p>এই ফিচারটি আপনার যেকোনো ধরণের প্রেসক্রিপশন অ্যানালাইসিস করে আপনাকে একটি বিস্তারিত ওয়ারভিউ দিতে পারবে।</p>
+                <h3>যেভাবে ব্যবহার করতে হবেঃ </h3>
+                <p><ol>
+                    <li>প্রথমে আপনাকে একটি প্রেসক্রিপশন দিতে হবে। অবশ্যই সেটা একটি প্রেসক্রিপশনের ইমেজ হতে হবে।</li>
+                    <li>আপনি চাইলে সরাসরি ক্যামেরা ওপেন করে প্রেসক্রিপশনের ইমেজ ইনপুট দিতে পারবেন অথবা আপনার প্রেসক্রিপশনের ছবি তোলা থাকলে সেটা সিলেক্ট করে ইনপুট দিতে পারবেন।</li>
+                    <li>ইমেজ দেওয়ার পর আপনাকে <b>অ্যানালাইসিস করুন</b> বাটনে ক্লিক করতে হবে।</li>
+                    <li>এরপর আপনাকে কিছুক্ষন অপেক্ষা করতে হবে। <b>এই সময়ের মধ্যে আপনার ইমেজটি গুলো এআই এর মাধ্যমে বিশ্লেষণ করানো হবে এবং সেই অনুযায়ী একটি রিপোর্ট বা ওভারভিউ প্রদান করা হবে।</b></li>
+                    <li>রিপোর্টে আপনি আপনার প্রেসক্রিপশন অনুযায়ী বিভিন্ন ডাটা, কোন ওষুধের কাজ কি, কি কি পার্শ্বপতিক্রিয়া আছে সেসব সম্পর্কে জানতে পারবেন। </li>
+                   </ol>
+                </p>
+            </ul>
+          `;
+          link.href = 'https://healthhive.shadharon.net/prescription-analysis.html';
+          link.innerText = 'ভিজিট করুন';
+          break;
+        case 'feature5':
+          title.innerText = 'ইমেজ টু ডিজিজ';
+          icon.className = 'fas fa-camera icon';
+          details.innerHTML = `
+            <ul> 
+                <h3>কাজঃ </h3>
+                <p>এই ফিচারটি আপনার যেকোনো ধরণের এলার্জেটিক বা ত্বকের সংক্রমক, বা ক্ষত অংশের ছবি অ্যানালাইসিস করে আপনাকে একটি বিস্তারিত ওয়ারভিউ দিতে পারবে।</p>
+                <h3>যেভাবে ব্যবহার করতে হবেঃ </h3>
+                <p><ol>
+                    <li>প্রথমে আপনাকে একটি সংক্রমিত ত্বক বা ক্ষত অংশের ছবি দিতে হবে। অবশ্যই সেটা একটি ইমেজ হতে হবে।</li>
+                    <li>আপনি চাইলে সরাসরি ক্যামেরা ওপেন করে ইমেজ ইনপুট দিতে পারবেন অথবা আপনার আগে থেকে ছবি তোলা থাকলে সেটা সিলেক্ট করে ইনপুট দিতে পারবেন।</li>
+                    <li>ইমেজ দেওয়ার পর আপনাকে <b>অ্যানালাইসিস করুন</b> বাটনে ক্লিক করতে হবে।</li>
+                    <li>এরপর আপনাকে কিছুক্ষন অপেক্ষা করতে হবে। <b>এই সময়ের মধ্যে আপনার ইমেজটি গুলো এআই এর মাধ্যমে বিশ্লেষণ করানো হবে এবং সেই অনুযায়ী একটি রিপোর্ট বা ওভারভিউ প্রদান করা হবে।</b></li>
+                    <li>রিপোর্টে আপনি আপনার ইমেজ অনুযায়ী কি কি রোগের জন্য এই ক্ষত বা সংক্রমণ হতে পারে, এটার প্রাথমিক চিকিৎসা কি হতে পারে, আপনার পরবর্তী পদক্ষেপ কি এসব বিষয়ে সু-স্পষ্ট ধারনা দেওয়া হবে।</li>
+                   </ol>
+                </p>
+            </ul>
+          `;
+          link.href = 'https://healthhive.shadharon.net/image-to-disease.html';
+          link.innerText = 'ভিজিট করুন';
+          break;
+        case 'feature6':
+          title.innerText = 'বেটার মি';
+          icon.className = 'fas fa-brain icon';
+          details.innerHTML = `
+            <ul> 
+                <h3>কাজঃ </h3>
+                <p>এই ফিচারটি আপনাকে বিভিন্ন ব্রেথিং এক্সারসাইজ ও সেশনের মাধ্যমে আপনাকে যেকোনো অনাকাঙ্খিত মুড বা অবস্থা থেকে রিলিফ দিতে পারবে।</p>
+                <h3>যেভাবে ব্যবহার করতে হবেঃ </h3>
+                <p><ol>
+                    <li>প্রথমে আপনাকে একটি মুড সিলেক্ট করতে হবে। আপনি আপনার মুড অনুযায়ী সিলেক্ট করবেন যেই মুড থেকে আপনি রিলিফ পেতে চান।</li>
+                    <li>এরপর আপনার সামনে একটি রিলাক্সিং ইন্টার-অ্যাক্টিভ ইন্টারফেস চলে আসবে। আপনি <b>প্যাটার্ন শুরু করুন</b> বাটনে ক্লিক করে আপনি আপনার এক্সারসাইজ শুরু করতে পারবেন।</li>
+                    <li>এক্সারসাইজ শুরু হওয়ার সাথে সাথে ব্যাকগ্রাউন্ডে একটি রিল্যাক্স মিউজিক বাজতে থাকবে এবং আপনাকে কখন শ্বাস নিতে হবে, কখন হোল্ড করে রাখতে হবে, কখন শ্বাস ছেড়ে দিতে হবে এসব ইন্সট্রাকশন ভয়েস ওভার করে দেওয়া হবে।</li>
+                    <li>বিভিন্ন মুড অনুযায়ী ব্রেথিং এক্সার সাইজের প্যাটার্ন ও সেশন ডিফাইন করে দেওয়া আছে। তবে আপনি চাইলে আপনার নিজের মতো করে সব কিছু কাস্টমাইজ করতে পারবেন।</li>
+                    <li>এছাড়াও আমাদের এখানে এক্সার সাইজ বন্ধ করা, মিউজিক বন্ধ বা চালু করা, পুরুষ ও মহিলা কন্ঠ পরিবর্তন করার সিস্টেম হয়েছে।</li>
+                   </ol>
+                </p>
+            </ul>
+          `;
+          link.href = 'https://healthhive.shadharon.net/better-me';
+          link.innerText = 'ভিজিট করুন';
+          break;
+        case 'feature7':
+          title.innerText = 'উইমেন্স কর্নার';
+          icon.className = 'fas fa-calendar-day icon';
+          details.innerHTML = `
+            <ul> 
+                <h3>কাজঃ </h3>
+                <p>বর্তমান সময়ে মহিলাদের বিভিন্ন গুরুত্বপুর্ণ সমস্যা ও বিষয় নিয়ে আলোচনা করা হয়েছে এই ফিচারে।</p>
+                <h3>যেভাবে ব্যবহার করতে হবেঃ </h3>
+                <p><ol>
+                    <li>উইমেন্স কর্নারে আমাদের কয়েকটি টপিক নিয়ে আলোচনা করা হয়েছে। তাই প্রথমে আপনাকে টপিক সিলেক্ট করতে হবে আপনি কোন বিষয়ে জানতে চাচ্ছেন।</li>
+                    <li>তারপর আপনাকে সেই বিষয়ে যেসব তথ্য না জানলেই নয় সেসব বিষয় নিয়ে আলোচনা করা হয়েছে।</li>
+                   </ol>
+                </p>
+            </ul>
+          `;
+          link.href = 'https://healthhive.shadharon.net/womens-corner.html';
+          link.innerText = 'Track Your Day';
+          break;
+        default:
+          title.innerText = 'Unknown Feature';
+          icon.className = 'fas fa-exclamation-triangle icon';
+          details.innerText = 'No details available.';
+          link.href = '#';
+          link.innerText = '';
+      }
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

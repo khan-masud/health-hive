@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>মেডিকেট রিপোর্ট অ্যানালাইসিস - হেলথ হাইভ</title>
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/form-analysis.css">
+   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+
+<!-- Start Header Section-->
+<section class="header">
+  <div class="navber">
+      <div class="nav-logo">
+          <a href="index.html" class="logo-link">
+              <img src="./img/logo.png" alt="Logo">
+          </a>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <span class="material-symbols-outlined mobile-menu-icon">menu</span>
+      </button>
+      <div class="nav-list mobile-menu">
+          <a href="index.html" class="nav-link">
+              <span class="material-symbols-outlined">home</span>
+              হোম
+          </a>
+          <div class="dropdown">
+              <button onclick="navDropDown()" class="dropbtn">
+                  <span class="material-symbols-outlined">service_toolbox</span>
+                  সলুশন
+                  <span class="material-symbols-outlined">keyboard_arrow_down</span>
+              </button>
+              <div class="dropdown-content">
+                  <a href="symptoms-checker.html"><span class="material-symbols-outlined">prompt_suggestion</span>সিম্পটম চেকার</a>
+                  <a href="health-risk-predictor.html"><span class="material-symbols-outlined">text_snippet</span>হেলথ রিস্ক প্রেডিক্টর</a>
+                  <a href="medical-report-analysis.html"><span class="material-symbols-outlined">running_with_errors</span>মেডিকেল রিপোর্ট অ্যানালাইসিস</a>
+                  <a href="prescription-analysis.html"><span class="material-symbols-outlined">prescriptions</span>প্রেসক্রিপশন অ্যানালাইসিস</a>
+                  <a href="better-me.html"><span class="material-symbols-outlined">psychology</span>বেটার মি</a>
+                  <a href="image-to-disease.html"><span class="material-symbols-outlined">photo_library</span>ইমেজ টু ডিজিজ</a>
+                  <a href="diet-and-fitness-plan.html"><span class="material-symbols-outlined">bar_chart_4_bars</span>ডায়েট ও ফিটনেস প্ল্যান</a>
+              </div>
+          </div>
+          <a href="womens-corner.html" class="nav-link"><span class="material-symbols-outlined">woman</span>উইমেন্স কর্নার</a>
+          <a href="documentation/index.html" class="nav-link"><span class="material-symbols-outlined">help</span>ডকুমেন্টেশন</a>
+      </div>
+  </div>
+  
+</section>
+<!-- End Header Section-->
+
+<!-- Start Form -->
+ <section class="prescription-analysis-form">
+  <div class="container">
+    <div class="container-heading">
+      <div class="container-title">
+        <h1>প্রেসক্রিপশন অ্যানালাইসিস করুন</h1>
+    </div>
+    </div>
+  <div class="container-body">
+    <form id="uploadForm" method="POST" action="">
+      <div class="upload-container">
+        <img id="imagePreview" style="display: none; max-width: 100%; margin-bottom: 10px;" alt="Selected Image Preview">
+        <label for="image" style="text-align: center; font-weight: bold; color: rgb(101, 115, 130);">প্রেসক্রিপশনের পরিষ্কার ও সচ্ছ ছবি আপলোড করুন...</label>
+        <div id="dropzone" class="dropzone">Drag & Drop Image Here or Click to Upload</div>
+        <input type="file" id="image" name="image" accept="image/*" style="display: none;" required>
+        <button class="camera-btn" type="button" onclick="openCamera()">ক্যামেরা ওপেন করুন</button>
+      </div>
+      <input type="text" id="promptText" placeholder="প্রেসক্রিপশন সম্পর্কে কিছু বলুন... (Optional)">
+      <center><button type="submit" class="submit-btn"><span class="material-symbols-outlined analysis-icon">search</span>অ্যানালাইসিস করুন</button></center>
+    </form>
+    <div id="result"></div>
+  </div>
+  </div>
+ </section>
+<!-- End Form -->
+
+
+  <!-- Overlay for Camera Popup -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Camera Popup -->
+  <div id="cameraPopup" class="camera-popup">
+    <video id="camera" autoplay></video>
+    <canvas id="canvas"></canvas>
+    <center><button id="captureButton">ক্যাপচার করুন</button></center>
+  </div>
+
+
+<!-- Start Footer Section -->
+<section class="footer">
+  <div class="footer-container">
+      <div class="footer-logo">
+          <a href="index.html">
+              <img src="./img/logo.png" alt="Logo" class="footer-logo-image">
+          </a>
+          <div class="footer-copyright">
+              <span class="copyright">
+                  &copy;<span class="copyright-year">2024</span> - HealthHive. All Rights Reserved.
+              </span>
+          </div>
+      </div>
+      <div class="footer-menu">
+          <h2 class="footer-title">
+            ফিচার্স</h2>
+          <a href="symptoms-checker.html" class="footer-link">সিম্পটম চেকার</a> <br />
+          <a href="medical-report-analysis.html" class="footer-link">মেডিকেল রিপোর্ট অ্যানালাইসিস</a> <br />
+          <a href="better-me-breathing.html" class="footer-link">বেটার মি</a> <br />
+          <a href="health-risk-predictor.html" class="footer-link">হেলথ রিস্ক প্রেডিক্টর</a> <br />
+          <a href="prescription-analysis.html" class="footer-link">প্রেসক্রিপশন অ্যানালাইসিস</a>
+      </div>
+      <div class="important-links">
+          <h2 class="footer-title">গুরুত্বপূর্ণ লিংকস</h2>
+          <a href="privacy-and-policy.html" class="important-link">গোপনীয়তা</a> <br />
+          <a href="disclaimer.html" class="important-link">অস্বীকৃতিজ্ঞাপন</a> <br />
+          <a href="documentation/index.html" class="important-link">ডকুমেন্টেশন</a> <br />
+      </div>
+  </div>
+  <div class="footer-copyright-mobile">
+      <span class="copyright-mobile">
+          &copy;<span class="copyright-year">2024</span> - HealthHive. All Rights Reserved.
+      </span>
+  </div>
+</section>
+<!-- End Footer Section -->
+
+<script src="./js/config.js"></script>
+<script src="./js/utilities.js"></script>
+<script src="./js/prescription-analysis.js"></script>
+</body>
+</html>

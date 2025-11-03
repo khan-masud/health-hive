@@ -1,0 +1,113 @@
+.page-section {
+    display: flex;
+    justify-content: center;
+
+}
+.container-box {
+    width: 70%;
+    font-size: 18px;
+    margin-top: 120px;
+    background-color: white;
+    max-width: 750px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 120px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+table, th, td {
+    border: 1px solid #ccc;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background-color: #f4f4f4;
+}
+
+h2 {
+    font-size: 22px;
+    padding: 10px;
+    color: #084f66;
+}
+
+p {
+    font-size: 18px;
+    padding: 10px;
+}
+ul, ol {
+    margin-left: 50px;
+}
+
+.container-heading {
+    background: linear-gradient(to right, #ff0080, #ff8c00);
+    border-radius: 10px 10px 0px 0px;
+    padding: 15px;
+}
+
+.container-body {
+    margin: 10px auto;
+    padding: 20px;
+}
+
+.heading-title {
+    color: black;
+}
+
+.page-name {
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.page-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    background-color: #f0d9d9;
+    border-left: 7px solid red;
+    width: 40%;
+    padding: 10px;
+}
+
+
+span.page-title-icon {
+    font-size: 40px !important;
+    margin-right: 10px;
+    color: red;
+}
+
+.page-image {
+    width: 250px;
+    height: 250px;
+    padding: 20px;
+}
+
+.page-description {
+    margin-top: 10px;
+}
+
+.lists {
+    margin-left: 60px;
+}
+
+.disclaimer {
+    color: red;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        width: 80%;
+    }
+
+    .page-section .container {
+        width: 95%;
+    }
+}

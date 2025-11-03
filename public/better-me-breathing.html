@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ব্রেথিং এক্সারসাইজ - হেলথ হাইভ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/better-me.css">
+    <style>
+        /* Animated Night Sky Background */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Dark gradient sky */
+        .night-sky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                #0a0e27 0%, 
+                #1a1f3a 50%, 
+                #2a2f4a 100%);
+            z-index: -10;
+        }
+
+        /* Moon */
+        .moon {
+            position: fixed;
+            top: 5%;
+            right: 5%;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, 
+                #f4f4f4 0%, 
+                #e8e8e8 30%, 
+                #d0d0d0 60%, 
+                #b8b8b8 100%);
+            box-shadow: 
+                inset -10px -10px 30px rgba(0, 0, 0, 0.3),
+                inset 10px 10px 30px rgba(255, 255, 255, 0.1),
+                0 0 60px rgba(255, 255, 255, 0.8),
+                0 0 100px rgba(255, 255, 255, 0.5),
+                0 0 140px rgba(255, 255, 255, 0.3);
+            animation: moonGlow 4s ease-in-out infinite;
+            z-index: -9;
+            opacity: 0.4;
+        }
+
+        /* Moon craters */
+        .moon::before {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, 
+                rgba(0, 0, 0, 0.2) 0%, 
+                rgba(0, 0, 0, 0.1) 50%, 
+                transparent 100%);
+            border-radius: 50%;
+            top: 30%;
+            left: 40%;
+            box-shadow: 
+                15px -15px 0 -5px rgba(0, 0, 0, 0.15),
+                -20px 10px 0 -8px rgba(0, 0, 0, 0.12),
+                25px 20px 0 -10px rgba(0, 0, 0, 0.1),
+                -10px -20px 0 -12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Moon texture */
+        .moon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background-image: 
+                radial-gradient(circle at 60% 20%, rgba(0, 0, 0, 0.05) 3px, transparent 3px),
+                radial-gradient(circle at 30% 50%, rgba(0, 0, 0, 0.04) 2px, transparent 2px),
+                radial-gradient(circle at 70% 60%, rgba(0, 0, 0, 0.06) 4px, transparent 4px),
+                radial-gradient(circle at 40% 80%, rgba(0, 0, 0, 0.03) 2px, transparent 2px),
+                radial-gradient(circle at 80% 40%, rgba(0, 0, 0, 0.04) 3px, transparent 3px);
+            background-size: 100% 100%;
+        }
+
+        /* Ensure content is above background */
+        #background-overlay,
+        .container-box,
+        .top-div,
+        .bottom-div {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes moonGlow {
+            0%, 100% {
+                box-shadow: 
+                    inset -10px -10px 30px rgba(0, 0, 0, 0.3),
+                    inset 10px 10px 30px rgba(255, 255, 255, 0.1),
+                    0 0 60px rgba(255, 255, 255, 0.8),
+                    0 0 100px rgba(255, 255, 255, 0.5),
+                    0 0 140px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 
+                    inset -10px -10px 30px rgba(0, 0, 0, 0.3),
+                    inset 10px 10px 30px rgba(255, 255, 255, 0.1),
+                    0 0 80px rgba(255, 255, 255, 1),
+                    0 0 120px rgba(255, 255, 255, 0.7),
+                    0 0 160px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        /* Stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -8;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Shooting stars */
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            animation: shoot 3s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-300px) translateY(300px);
+                opacity: 0;
+            }
+        }
+
+        /* Trees silhouette */
+        .trees-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            z-index: -7;
+            overflow: hidden;
+        }
+
+        .tree {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 180px solid rgba(20, 30, 48, 0.9);
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        .tree::before {
+            content: '';
+            position: absolute;
+            bottom: -180px;
+            left: -5px;
+            width: 10px;
+            height: 40px;
+            background: rgba(40, 35, 30, 0.9);
+        }
+
+        .tree:nth-child(1) {
+            left: 5%;
+            animation-delay: 0s;
+            opacity: 0.7;
+        }
+
+        .tree:nth-child(2) {
+            left: 15%;
+            animation-delay: 0.5s;
+            transform: scale(0.8);
+            opacity: 0.6;
+        }
+
+        .tree:nth-child(3) {
+            left: 30%;
+            animation-delay: 1s;
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        .tree:nth-child(4) {
+            left: 50%;
+            animation-delay: 1.5s;
+            transform: scale(0.9);
+            opacity: 0.65;
+        }
+
+        .tree:nth-child(5) {
+            left: 70%;
+            animation-delay: 2s;
+            transform: scale(1.1);
+            opacity: 0.75;
+        }
+
+        .tree:nth-child(6) {
+            left: 85%;
+            animation-delay: 2.5s;
+            opacity: 0.7;
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+            }
+            25% {
+                transform: rotate(-2deg) scale(1.01);
+            }
+            75% {
+                transform: rotate(2deg) scale(0.99);
+            }
+        }
+
+        /* Ground/Hill silhouette */
+        .ground {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15%;
+            background: rgba(15, 20, 35, 0.95);
+            z-index: -6;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+
+        /* Clouds */
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 100px;
+            width: 150px;
+            height: 50px;
+            animation: floatCloud 60s linear infinite;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 100px;
+        }
+
+        .cloud::before {
+            width: 80px;
+            height: 80px;
+            top: -40px;
+            left: 20px;
+        }
+
+        .cloud::after {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            right: 20px;
+        }
+
+        @keyframes floatCloud {
+            0% {
+                left: -200px;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Fireflies */
+        .firefly {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 150, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 150, 0.8);
+            animation: fly 8s ease-in-out infinite;
+        }
+
+        @keyframes fly {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-50px) translateX(30px);
+                opacity: 0.7;
+            }
+            75% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .moon {
+                width: 60px;
+                height: 60px;
+                right: 5%;
+                top: 3%;
+            }
+            
+            .tree {
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                border-bottom: 120px solid rgba(20, 30, 48, 0.9);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Elements -->
+    <div class="night-sky"></div>
+    <div class="moon"></div>
+    
+    <!-- Stars -->
+    <div class="stars" id="stars-container"></div>
+    
+    <!-- Clouds -->
+    <div class="cloud" style="top: 15%; animation-delay: 0s;"></div>
+    <div class="cloud" style="top: 25%; animation-delay: 20s;"></div>
+    <div class="cloud" style="top: 35%; animation-delay: 40s;"></div>
+    
+    <!-- Trees -->
+    <div class="trees-container">
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+    </div>
+    
+    <!-- Ground -->
+    <div class="ground"></div>
+    
+    <!-- Fireflies Container -->
+    <div id="fireflies-container"></div>
+
+    <script>
+        // Generate random stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars-container');
+            const numberOfStars = 200;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 80 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+            
+            // Add shooting stars
+            for (let i = 0; i < 5; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = Math.random() * 100 + '%';
+                shootingStar.style.top = Math.random() * 50 + '%';
+                shootingStar.style.animationDelay = Math.random() * 10 + 's';
+                shootingStar.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                starsContainer.appendChild(shootingStar);
+            }
+        }
+
+        // Generate fireflies
+        function createFireflies() {
+            const firefliesContainer = document.getElementById('fireflies-container');
+            const numberOfFireflies = 15;
+            
+            for (let i = 0; i < numberOfFireflies; i++) {
+                const firefly = document.createElement('div');
+                firefly.className = 'firefly';
+                firefly.style.left = Math.random() * 100 + '%';
+                firefly.style.bottom = Math.random() * 40 + '%';
+                firefly.style.animationDelay = Math.random() * 8 + 's';
+                firefly.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                firefliesContainer.appendChild(firefly);
+            }
+        }
+
+        // Initialize animations
+        createStars();
+        createFireflies();
+    </script>
+    <div id="background-overlay">
+        <!-- Main Content Container -->
+        <div class="main-content-wrapper">
+            <!-- Title Section -->
+            <div class="title-section">
+                <h1 class="main-title">বেটার মি - ব্রেথিং এক্সারসাইজ</h1>
+                <p class="subtitle">নির্দেশনা অনুযায়ী শ্বাস ও প্রশ্বাস নেওয়ার জন্য রেডি হোন!</p>
+            </div>
+
+            <!-- Main Layout Grid -->
+            <div class="main-layout">
+                <!-- Left Panel - Settings -->
+                <div class="left-panel">
+                    <!-- Combined Settings Card -->
+                    <div class="settings-card">
+                        <h3 class="card-title">
+                            <span class="icon">⚙️</span> শ্বাস-প্রশ্বাসের সেটিংস
+                        </h3>
+                        
+                        <!-- Pattern Settings Section -->
+                        <div class="settings-section">
+                            <h4 class="section-subtitle">শ্বাস প্যাটার্ন</h4>
+                            <div class="input-group">
+                                <label for="inhale-time">নিশ্বাস</label>
+                                <input type="number" id="inhale-time" value="4" min="1" max="10" class="form-control">
+                                <span class="unit">সে.</span>
+                            </div>
+                            <div class="input-group">
+                                <label for="hold-time">ধরে রাখা</label>
+                                <input type="number" id="hold-time" value="4" min="0" max="10" class="form-control">
+                                <span class="unit">সে.</span>
+                            </div>
+                            <div class="input-group">
+                                <label for="exhale-time">প্রশ্বাস</label>
+                                <input type="number" id="exhale-time" value="6" min="1" max="10" class="form-control">
+                                <span class="unit">সে.</span>
+                            </div>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="settings-divider"></div>
+
+                        <!-- Session Settings Section -->
+                        <div class="settings-section">
+                            <h4 class="section-subtitle">সেশন সেটিংস</h4>
+                            <div class="input-group">
+                                <label for="duration">সময়কাল</label>
+                                <input type="number" id="duration" value="1" min="1" max="10" class="form-control">
+                                <span class="unit">মিনিট</span>
+                            </div>
+                            <div class="input-group">
+                                <label for="speed">স্পিড</label>
+                                <input type="number" id="speed" value="4" min="2" max="10" step="0.5" class="form-control">
+                                <span class="unit">সে.</span>
+                            </div>
+                        </div>
+
+                        <!-- Single Submit Button -->
+                        <button class="btn btn-primary w-100 mt-3" id="apply-settings-btn" onclick="applyAllSettings()">
+                            সেটিংস প্রয়োগ করুন
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Center Panel - Breathing Circle -->
+                <div class="center-panel">
+                    <div class="breathing-section">
+                        <div class="breathing-circle"></div>
+                        <p class="status-text" id="status-text">শুরু করতে বাটনে ক্লিক করুন</p>
+                    </div>
+
+                    <!-- Control Buttons -->
+                    <div class="control-buttons-wrapper">
+                        <button class="btn btn-primary btn-lg" onclick="toggleExercise()" id="exercise-button">
+                            <span class="btn-icon">▶</span> শুরু করুন
+                        </button>
+                        <button onclick="toggleMusic()" id="music-btn" class="btn btn-secondary btn-lg">
+                            <span class="btn-icon">♫</span> মিউজিক
+                        </button>
+                        <button id="voice-toggle" class="btn btn-secondary btn-lg" data-voice="male" onclick="toggleVoice()">
+                            <span class="btn-icon">🎙</span> পুরুষ কন্ঠ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Progress Chart -->
+                <div class="right-panel">
+                    <div class="settings-card chart-card">
+                        <h3 class="card-title">
+                            <span class="icon">📊</span> অগ্রগতি
+                        </h3>
+                        <canvas id="progress-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-copyright">
+                <span>&copy;<span class="copyright-year">2024</span> - HealthHive. All Rights Reserved.</span>
+            </div>
+        </div>
+
+        <!-- Hidden Audio -->
+        <audio id="background-music" src="./sounds/music1.mp3" loop></audio>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Update copyright year dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElements = document.querySelectorAll('.copyright-year');
+            const currentYear = new Date().getFullYear();
+            yearElements.forEach(el => el.textContent = currentYear);
+        });
+    </script>
+    <script src="./js/better-me.js"></script>
+</body>
+</html>
