@@ -12,11 +12,11 @@
 [![Google AI](https://img.shields.io/badge/Google_AI-Gemini_2.0-4285F4?style=flat&logo=google&logoColor=white)](https://ai.google.dev/)
 [![License](https://img.shields.io/badge/License-ISC-blue.svg)](LICENSE)
 
-[Features](#-features) • [Demo](#-demo) • [Installation](#-installation) • [Usage](#-usage) • [API Documentation](#-api-documentation) • [Contributing](#-contributing)
+[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [API Documentation](#-api-documentation) • [Contributing](#-contributing)
 
 ---
 
-**Live Demo:** [https://domain_name](https://domain_name)
+**Live Demo:** [https://your_url_here](https://your_url_here)
 
 </div>
 
@@ -56,28 +56,6 @@ To democratize healthcare access by providing intelligent, AI-driven medical ins
 - 💾 **MySQL Integration** - Robust database with optimized queries
 - 🔒 **Secure File Handling** - Multer-based file uploads with validation
 - 📱 **Responsive Design** - Mobile-first, adaptive UI
-
----
-
-## 🎬 Demo
-
-### 🖥️ Screenshots
-
-> **Note:** Add screenshots of your application here
-
-```
-public/img/screenshots/
-├── homepage.png
-├── symptom-checker.png
-├── medical-report.png
-└── prescription-analysis.png
-```
-
-### 🌐 Live Demo
-
-**Visit:** [https://domain_name](https://domain_name)
-
-**API Base URL:** `https://domain_name`
 
 ---
 
@@ -226,7 +204,7 @@ npm start
 node server.js
 ```
 
-The server will start at `https://domain_name` (production) or `http://localhost:3000` (development)
+The server will start at `https://your_url_here` (production) or `http://localhost:3000` (development)
 ```
 
 ### Running Database Migration
@@ -238,10 +216,10 @@ npm run migrate
 ### Accessing the Application
 
 **Production:**
-- **Homepage:** `https://domain_name`
-- **Symptom Checker:** `https://domain_name/symptoms-checker.html`
-- **Medical Report Analysis:** `https://domain_name/medical-report-analysis.html`
-- **Better Me:** `https://domain_name/better-me`
+- **Homepage:** `https://your_url_here`
+- **Symptom Checker:** `https://your_url_here/symptoms-checker.html`
+- **Medical Report Analysis:** `https://your_url_here/medical-report-analysis.html`
+- **Better Me:** `https://your_url_here/better-me`
 
 **Development (Local):**
 - **Homepage:** `http://localhost:3000`
@@ -255,7 +233,7 @@ npm run migrate
 
 ### Base URL
 
-**Production:** `https://domain_name`
+**Production:** `https://your_url_here`
 
 **Development:** `http://localhost:3000`
 
@@ -476,10 +454,10 @@ const upload = multer({
 3. **API Testing:**
 ```bash
 # Test symptoms endpoint (Production)
-curl https://domain_name/api/symptoms
+curl https://your_url_here/api/symptoms
 
 # Test diseases endpoint (Production)
-curl https://domain_name/api/diseases
+curl https://your_url_here/api/diseases
 
 # Test symptoms endpoint (Development)
 curl http://localhost:3000/api/symptoms
@@ -627,7 +605,6 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 ## 📞 Contact & Support
 
 - **GitHub:** [@khan-masud](https://github.com/khan-masud)
-- **Website:** [https://domain_name](https://domain_name)
 - **Issues:** [GitHub Issues](https://github.com/khan-masud/health-hive/issues)
 - **Discussions:** [GitHub Discussions](https://github.com/khan-masud/health-hive/discussions)
 
@@ -698,8 +675,6 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 <div align="center">
 
 ### ⭐ Star this repository if you find it helpful!
-
-**Made with ❤️ for the Bengali Healthcare Community**
 
 [Back to Top](#-health-hive---হেলথ-হাইভ)
 
