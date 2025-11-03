@@ -16,7 +16,7 @@
 
 ---
 
-**Live Demo:** [#](Coming Soon...)
+**Live Demo:** Coming Soon...
 
 </div>
 
