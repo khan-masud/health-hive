@@ -16,7 +16,7 @@
 
 ---
 
-**Live Demo:** [https://your_url_here](https://your_url_here)
+**Live Demo:** [#](Coming Soon...)
 
 </div>
 
