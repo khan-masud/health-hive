@@ -13,8 +13,17 @@ if (!process.env.API_KEY) {
     process.exit(1);
 }
 
+const uploadDir = path.join(__dirname, 'uploads');
+try {
+    if (!fs.existsSync(uploadDir)){
+        fs.mkdirSync(uploadDir, { recursive: true });
+    }
+} catch (err) {
+    console.error("Error creating uploads directory:", err);
+}
+
 const upload = multer({ 
-    dest: "uploads/",
+    dest: uploadDir,
     limits: { fileSize: 10 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
         const allowedMimes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
@@ -38,22 +47,43 @@ const cleanupFile = (filePath) => {
 };
 
 const getErrorMessage = (error) => {
-    if (error.message?.includes("429")) {
+    const errorMsg = error.message || error.toString();
+    console.error("Full error details:", error);
+    
+    if (errorMsg.includes("429")) {
         return "API rate limit exceeded. Please wait a moment and try again.";
-    } else if (error.message?.includes("quota")) {
+    } else if (errorMsg.includes("quota")) {
         return "API quota exceeded. Please try again later.";
-    } else if (error.message?.includes("invalid")) {
+    } else if (errorMsg.includes("invalid")) {
         return "Invalid image format. Please upload a valid image.";
+    } else if (errorMsg.includes("API key not valid")) {
+        return "Invalid API Key. Please check your configuration.";
     }
-    return "Failed to process the request. Please try again.";
+    return `Failed to process the request. Error: ${errorMsg}`;
 };
 
 app.use(cors({ origin: process.env.CORS_ORIGIN || '*', credentials: true }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.set('views', path.join(__dirname, '../views')); 
-app.use(express.static(path.join(__dirname, '../public')));
+
+// Dynamic path resolution for local (backend folder) vs production (root folder) behavior
+const getPath = (dir) => {
+    const localPath = path.join(__dirname, '..', dir);
+    const prodPath = path.join(__dirname, dir);
+    return fs.existsSync(prodPath) ? prodPath : localPath;
+};
+
+const viewsPath = getPath('views');
+const publicPath = getPath('public');
+
+app.set('views', viewsPath); 
+app.use(express.static(publicPath));
 app.set('view engine', 'ejs');
+
+// Serve index.html for the root route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+});
 
 app.get('/better-me', (req, res) => {
   res.render('index');
@@ -122,7 +152,7 @@ app.post("/api/medical-report-analysis", upload.single("image"), async (req, res
         displayName: originalname,
       });
   
-      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   
 
       const result = await model.generateContent([
@@ -194,7 +224,7 @@ app.post("/api/prescription-analysis", upload.single("image"), async (req, res) 
       displayName: originalname,
     });
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const result = await model.generateContent([
       `ইমেজটি অ্যানালাইসিস করে (হাতের লিখা প্রেসক্রিপশন হলেও হবে) এই পয়েন্ট গুলো একটা একটা অ্যানালাইসিস করে আউটপুট দিবা। ১. প্রেসক্রিপশনের সাথারণ তথ্য সমূহ ২. প্রেসক্রিপশনে যা যা বলা হয়েছে ৩. প্রেসক্রিপশনের ওষুধ গুলোর কাজ ৪. প্রেসক্রিপশনের ওষুধ গুলোর পার্শ্বপ্রতিক্রিয়া। এগুলো দেওয়ার পাশাপাশি ইউজারের কমান্ডও পুরণ করে আউটপুট দিবা।
@@ -268,7 +298,7 @@ app.post("/api/image-to-disease", upload.single("image"), async (req, res) => {
       displayName: originalname,
     });
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const result = await model.generateContent([
       `এই ইমেজটি বিশ্লেষণ করবা এবং নিচের পয়েন্ট গুলো একটা একটা অ্যানালাইসিস করে আউটপুট দিবা। ১. ইমেজ সম্পর্কে সাধারণ তথ্য, ২. যেকারণে এরকম হতে পা্রে, ৩. সম্ভাব্য ঝুকি বা রোগ, ৪. ঝুকি এড়াতে পরবর্তী পদক্ষেপ, ৫. প্রাথমিক চিকিৎসা। এগুলো দেওয়ার পাশাপাশি ইউজারের কমান্ডও পুরণ করে আউটপুট দিবা।
@@ -335,7 +365,7 @@ app.post("/api/health-risk-predictor", async (req, res) => {
     }
     
     const userText = JSON.stringify(userData);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const result = await model.generateContent([
       `${userText} - এটি অ্যানালাইসিস করে বিস্তারিত একটা রিপোর্ট দেবা যে আমার ভবিষ্যতের কোনো রোগের রিস্ক আছে কিনা বা আমার কি কি সমস্যা হতে পারে। এর জন্য যে পয়েন্ট গুলোর প্রত্যেকটির উত্তর দিবা সেগুলো হলো ১. বর্তমান স্বাস্থ্য অবস্থা, ২. বর্তমান স্বাস্থ্য সমস্যা, ৩. ভবিষ্যতে রোগের সম্ভাবনা, ৪. জীবনযাপনে প্রয়োজনীয় পরিবর্তন, ৫. গুরুত্বপূর্ণ বিষয়, ৬. মেডিকেল পরামর্শ। এগুলোর উত্তর পয়েন্ট বা লিস্ট আকারে দিবা। আউটপুট হিসেবে Tag আর Attribute হিসেবে যেগুলো must ব্যবহার করবা b, p, br, hr, h2, h3, ul, li. পয়েন্ট গুলো রাখবা h3 ট্যাগে এবং পয়েন্টের উত্তর গুলো রাখবা p ট্যাগের ভিতরে। 
@@ -384,7 +414,7 @@ app.post("/api/diet-and-fitness-plan", async (req, res) => {
     }
     
     const userText = JSON.stringify(userData);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const result = await model.generateContent([
       `${userText} - এটি অ্যানালাইসিস করে আমাকে একটা পার্সোনাল ডায়েট ও ফিটনেস প্ল্যান করে একটি রুটিন করে দেবা। এর জন্য নিচের পয়েন্ট গুলোর প্রত্যেকটির বিস্তারিত উত্তর দিবা। ১. ওভারভিউ ২. ডায়েট প্ল্যান, ৩. ফিটনেস প্ল্যান, ৪. দৈনন্দিন খাদ্যতালিকা ৪. প্রয়োজনীয় ব্যায়াম, ৫. রুটিন, ৬. যেসব বিষয়ে খেয়াল রাখা দরকার। এগুলোর উত্তর পয়েন্ট বা লিস্ট আকারে দিবা। আউটপুট হিসেবে Tag আর Attribute হিসেবে যেগুলো must ব্যবহার করবা b, p, br, hr, h2, h3, ul, li, table, td, tr, th. পয়েন্ট গুলো রাখবা h3 ট্যাগে এবং পয়েন্টের উত্তর গুলো রাখবা p ট্যাগের ভিতরে। রুটিন ও দৈনন্দিন খাদ্যতালিকা একটি স্টাইলিশ টেবিলের ভিতরে রাখবা। টেবিলের স্টাইল যেরকম হবে - 
@@ -418,7 +448,8 @@ app.use((error, req, res, next) => {
     }
     return res.status(400).json({ error: `Upload error: ${error.message}` });
   } else if (error) {
-    return res.status(400).json({ error: error.message });
+    const message = error.message || "Unknown error occurred";
+    return res.status(500).json({ error: message });
   }
   next();
 });
