@@ -1,12 +1,11 @@
 {
-  "name": "backend",
+  "name": "HeallthHive",
   "version": "1.0.0",
   "description": "",
   "main": "data.js",
   "scripts": {
     "start": "node server.js",
-    "migrate": "node migrate.js",
-    "verify": "node verify-database.js"
+    "migrate": "node migrate.js"
   },
   "keywords": [],
   "author": "",

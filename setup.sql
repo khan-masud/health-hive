@@ -1,17 +1,11 @@
--- Quick Setup Script for Health Hive Database
--- Run this file to create and setup the database in one go
+# ----------------------------
+# DB Schema of Health Hive
+# ----------------------------
 
--- Step 1: Create the database
 CREATE DATABASE IF NOT EXISTS health_hive CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- Step 2: Use the database
 USE health_hive;
-
--- Step 3: Show confirmation message
 SELECT 'Database health_hive created successfully!' AS Status;
-
--- Step 4: Create tables
-SELECT 'Creating tables...' AS Status;
 
 -- Symptoms table
 CREATE TABLE IF NOT EXISTS symptoms (
@@ -48,15 +42,8 @@ CREATE TABLE IF NOT EXISTS tips (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Step 5: Create indexes for better performance
+-- Create indexes for better performance
 CREATE INDEX idx_symptom_name ON symptoms(name);
 CREATE INDEX idx_disease_name ON diseases(name);
 CREATE INDEX idx_disease_symptoms_disease ON disease_symptoms(disease_id);
 CREATE INDEX idx_disease_symptoms_symptom ON disease_symptoms(symptom_id);
-
--- Step 6: Show all tables
-SELECT 'Tables created successfully!' AS Status;
-SHOW TABLES;
-
--- Step 7: Show next steps
-SELECT 'Next Step: Run "npm run migrate" to populate the database with data' AS NextStep;
